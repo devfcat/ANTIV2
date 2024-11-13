@@ -10,6 +10,8 @@ public class Panel_Main : MonoBehaviour
     public Slider SESlider;
 
     public GameObject BTN_LoadStart;
+    public GameObject Popup_newStart;
+    [ReadOnly] public bool isDataExist;
     
     public void Awake()
     {
@@ -33,15 +35,22 @@ public class Panel_Main : MonoBehaviour
     {
         if (GameManager.Instance.m_State == eState.Main)
         {
+            Popup_newStart.SetActive(false);
             GameManager.Instance.Load();
-            if (GameManager.Instance.saved_stage <= 1)
+            if (GameManager.Instance.saved_stage <= 1) // 저장된 스테이지가 없을 경우
             {
+                isDataExist = false;
                 BTN_LoadStart.SetActive(false);
             }
-            else
+            else // 저장된 스테이지가 있을 경우
             {
+                isDataExist = true;
                 BTN_LoadStart.SetActive(true);
             }
+        }
+        else
+        {
+            isDataExist = true;
         }
     }
 
@@ -49,6 +58,21 @@ public class Panel_Main : MonoBehaviour
     {
         BgmSlider.value = SoundManager.Instance.BgmVolume;
         SESlider.value = SoundManager.Instance.SfxVolume;
+    }
+
+    public void Control_Popup_NewStart(bool b)
+    {
+        SoundManager.Instance.PlaySFX(SFX.Setting);
+
+        if (isDataExist)
+        {
+            Popup_newStart.SetActive(b);
+        }
+        else
+        {
+            Popup_newStart.SetActive(false);
+            Game_New_Start();
+        }
     }
 
     public void Game_New_Start()
