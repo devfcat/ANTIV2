@@ -33,7 +33,10 @@ public enum SFX
 {
     Setting = 0,
     click = 1,
-    NextStage,
+    PP,
+    GameClear,
+    Block00,
+    Error,
 }
 
 public class SoundManager : MonoBehaviour
