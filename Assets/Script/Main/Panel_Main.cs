@@ -9,8 +9,11 @@ public class Panel_Main : MonoBehaviour
     public Slider BgmSlider;
     public Slider SESlider;
 
+    public GameObject BTN_LoadStart;
+    
     public void Awake()
     {
+        Set_UI();
         Set_UI_Slider();
     }
 
@@ -23,6 +26,22 @@ public class Panel_Main : MonoBehaviour
         else if (SESlider.value != SoundManager.Instance.SfxVolume)
         {
             Set_UI_Slider();
+        }
+    }
+
+    public void Set_UI()
+    {
+        if (GameManager.Instance.m_State == eState.Main)
+        {
+            GameManager.Instance.Load();
+            if (GameManager.Instance.saved_stage <= 1)
+            {
+                BTN_LoadStart.SetActive(false);
+            }
+            else
+            {
+                BTN_LoadStart.SetActive(true);
+            }
         }
     }
 
@@ -41,6 +60,16 @@ public class Panel_Main : MonoBehaviour
     public void Game_Load_Start()
     {
         SoundManager.Instance.PlaySFX(SFX.Setting);
+
+        GameManager.Instance.Load();
+        if (GameManager.Instance.saved_stage <= 2)
+        {
+            GameManager.Instance.SetState(eState.Prologue);
+        }
+        else
+        {
+            GameManager.Instance.SetState((eState)GameManager.Instance.saved_stage);
+        }
     }
 
     public void Game_ReLoad()
@@ -52,6 +81,7 @@ public class Panel_Main : MonoBehaviour
 
     public void Save_and_Home()
     {
+        GameManager.Instance.Save();
         SoundManager.Instance.PlaySFX(SFX.Setting);
         GameManager.Instance.SetState(eState.Main);
     }
