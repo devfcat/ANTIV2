@@ -1169,7 +1169,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -70}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!95 &1138663021
 Animator:
@@ -1299,8 +1299,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3577deaec7af93a4994b6c6a3898ce99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFullScreen: 0
+  m_resolution: 0
   tmp: {fileID: 1754102326}
+  temp_width_windowed: 0
+  temp_height_windowed: 0
 --- !u!1 &1305850785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,7 +2583,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0.00024414062, y: -70}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2138388979
 MonoBehaviour:
@@ -2595,8 +2597,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3577deaec7af93a4994b6c6a3898ce99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFullScreen: 0
+  m_resolution: 0
   tmp: {fileID: 598112361}
+  temp_width_windowed: 0
+  temp_height_windowed: 0
 --- !u!95 &2138388980
 Animator:
   serializedVersion: 7

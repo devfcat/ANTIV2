@@ -86,6 +86,15 @@ public class GameManager : MonoBehaviour
         isWorking = false;
         SetState(eState.Splash);
         SetGameState(gameState.Default);
+
+        try
+        {
+            Resolution_Changer.Instance.Init();
+        }
+        catch
+        {
+            
+        }
     }
 
     public void Load()
