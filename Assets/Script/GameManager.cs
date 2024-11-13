@@ -6,10 +6,23 @@ using UnityEngine.SceneManagement;
 public enum eState
 {
     Splash = 0,
-    Main,
-    Prologue,
-    Stage01,
-    Stage02,
+    Main = 1,
+    Prologue = 2,
+    Stage01 = 3,
+    Stage02 = 4,
+    Stage03,
+    Stage04,
+    Stage05,
+    Stage06,
+    Stage07,
+    Stage08,
+    Stage09,
+    Stage10,
+    Stage11,
+    Stage12,
+    Stage13,
+    Stage14,
+    Stage15, // 보스 레벨전
     Ending
 }
 
@@ -41,6 +54,7 @@ public class GameManager : MonoBehaviour
     public eState m_State; // 현재 씬 상태
     public gameState g_State; // 현재 게임 상태
     public bool isWorking;
+    public int saved_stage;
 
     [Header("설정 창")]
     public GameObject Panel_StartSetting;
@@ -73,12 +87,37 @@ public class GameManager : MonoBehaviour
         SetGameState(gameState.Default);
     }
 
+    public void Load()
+    {
+        // 임시로 구현
+        int loaded = PlayerPrefs.GetInt("loaded_stage");
+        Debug.Log("로드된 스테이지: " + loaded);
+        GameManager.Instance.saved_stage = loaded;
+    }
+
+    public void Save()
+    {
+        // 임시로 구현
+        int loaded = (int)GameManager.Instance.m_State;
+        PlayerPrefs.SetInt("loaded_stage", loaded);
+        Debug.Log("저장된 스테이지: " + loaded);
+        Load();
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !(m_State == eState.Splash))
         {
             Control_Setting();
         }
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Delete))
+        {
+            PlayerPrefs.DeleteAll();
+            Debug.Log("저장된 정보 삭제");
+        }
+#endif
     }
 
     // 설정창을 끄거나 키는 기능
@@ -111,6 +150,7 @@ public class GameManager : MonoBehaviour
             if (g_State == gameState.Setting)
             {
                 Panel_StartSetting.SetActive(true);
+                Panel_StartSetting.GetComponent<Panel_Main>().Set_UI();
             }
             else
             {
@@ -158,7 +198,16 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(Change_Scene("Prologue"));
                 break;
             case eState.Stage01:
+                Save();
                 StartCoroutine(Change_Scene("Stage01"));
+                break;
+            case eState.Stage02:
+                Save();
+                StartCoroutine(Change_Scene("Stage02"));
+                break;
+            case eState.Stage03:
+                Save();
+                StartCoroutine(Change_Scene("Stage03"));
                 break;
             default:
                 isWorking = false;
