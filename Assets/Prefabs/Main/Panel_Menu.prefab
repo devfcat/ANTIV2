@@ -1567,6 +1567,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BgmSlider: {fileID: 1534816508470459116}
   SESlider: {fileID: 7566112132384332587}
+  BTN_LoadStart: {fileID: 0}
+  Popup_newStart: {fileID: 0}
+  isDataExist: 0
 --- !u!1 &6972486746341245580
 GameObject:
   m_ObjectHideFlags: 0
