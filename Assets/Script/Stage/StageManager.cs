@@ -28,10 +28,13 @@ public class StageManager : MonoBehaviour
     [Header("제어변수")]
     [SerializeField] float speed; //이동 속도
     [SerializeField] float r_speed; //각 속도
+    public bool isGameOver = false;
     [Tooltip("현재 조종 캐릭터")] public Character character;
     [Tooltip("애니메이션 모드")] public int animation_mod;
 
     [Tooltip("캐릭터 변경 중인가")] public bool isWorking = false;
+
+    public Stage stage;
 
     public float vx; // 속도
     public float vy; // 속도
@@ -97,6 +100,8 @@ public class StageManager : MonoBehaviour
             character = Character.P;
         }
 
+        stage.Shaking_Stage();
+
         yield return new WaitForSeconds(0.5f);
 
         isWorking = false;
@@ -107,6 +112,7 @@ public class StageManager : MonoBehaviour
         SoundManager.Instance.PlayBGM(BGM.Stage);
         animation_mod = 0;
         isWorking = false;
+        isGameOver = false;
     }
 
     public void Click_Setting()
