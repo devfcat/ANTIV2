@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// 씬 이름과 상태 이름이 동일하도록 적을 것
 public enum eState
 {
     Splash = 0,
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !(m_State == eState.Splash))
+        if (Input.GetKeyDown(KeyCode.Escape) && !(SceneManager.GetActiveScene().name == "Splash"))
         {
             Control_Setting();
         }
@@ -200,14 +201,6 @@ public class GameManager : MonoBehaviour
             case eState.Stage01:
                 Save();
                 StartCoroutine(Change_Scene("Stage01"));
-                break;
-            case eState.Stage02:
-                Save();
-                StartCoroutine(Change_Scene("Stage02"));
-                break;
-            case eState.Stage03:
-                Save();
-                StartCoroutine(Change_Scene("Stage03"));
                 break;
             default:
                 isWorking = false;

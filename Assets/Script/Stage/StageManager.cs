@@ -26,8 +26,8 @@ public class StageManager : MonoBehaviour
     }
 
     [Header("제어변수")]
-    [SerializeField] float speed; //이동 속도
-    [SerializeField] float r_speed; //각 속도
+    [SerializeField] float speed; // 이동 속도
+    [SerializeField] float r_speed; // 각 속도
     public bool isGameOver = false;
     [Tooltip("현재 조종 캐릭터")] public Character character;
     [Tooltip("애니메이션 모드")] public int animation_mod;

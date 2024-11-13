@@ -38,7 +38,6 @@ public class PrologueManager : MonoBehaviour
         SoundManager.Instance.PlayBGM(BGM.Stage_Prologue);
         panel_Index = 0;
         Set_PageUI();
-
     }
 
     public void Set_PageUI()
