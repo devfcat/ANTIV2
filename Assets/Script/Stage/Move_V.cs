@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 
+/// </summary>
 public class Move_V : MonoBehaviour
 {
     [Header("좌표")]
@@ -18,8 +21,17 @@ public class Move_V : MonoBehaviour
     public Transform Body;
     public GameObject Arrow;
 
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.transform.parent.gameObject.name.Contains("kill"))
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
+
     public void Init()
     {
+        this.gameObject.SetActive(true);
         animator.SetInteger("Mod", 0);
     }
 
@@ -47,7 +59,7 @@ public class Move_V : MonoBehaviour
     void FixedUpdate() //일정 시간마다 계속 실행.
     {
         Character ch = StageManager.Instance.character;
-        if (ch == Character.V)
+        if (ch == Character.V && !StageManager.Instance.isGameOver)
         {
             Enable_Arrow(true);
 
