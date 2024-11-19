@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Illust Background_0: 6875604434456941779
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
