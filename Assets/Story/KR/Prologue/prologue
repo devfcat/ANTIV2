@@ -1,0 +1,24 @@
+{
+    "story" :
+    [
+        {
+            "stage" : 0,
+            "dialogue" : 
+            [
+                {
+                    "speaker" : "",
+                    "content" : ""
+                },
+                {
+                    "speaker" : "",
+                    "content" : ""
+                },
+                {
+                    "speaker" : "",
+                    "content" : ""
+                }
+            ]
+            
+        }
+    ]
+}

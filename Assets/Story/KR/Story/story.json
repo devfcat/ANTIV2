@@ -1,0 +1,35 @@
+{
+    "story" :
+    [
+        {
+            "stage" : 1,
+            "dialogue" : 
+            [
+                {
+                    "speaker" : "",
+                    "content" : ""
+                },
+                {
+                    "speaker" : "",
+                    "content" : ""
+                }
+            ]
+            
+        },
+        {
+            "stage" : 2,
+            "dialogue" : 
+            [
+                {
+                    "speaker" : "",
+                    "content" : ""
+                },
+                {
+                    "speaker" : "",
+                    "content" : ""
+                }
+            ]
+            
+        }
+    ]
+}
