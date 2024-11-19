@@ -6,12 +6,12 @@
             "dialogue" : 
             [
                 {
-                    "speaker" : "",
-                    "content" : ""
+                    "speaker" : "V",
+                    "content" : "봐, 새로운 물체들이 여기에도 나타났어."
                 },
                 {
-                    "speaker" : "",
-                    "content" : ""
+                    "speaker" : "P",
+                    "content" : "회로를 작동시키자.\n보이지 않는 힘이 주변을 가로막고 있으니 조심해야 해."
                 }
             ]
             
