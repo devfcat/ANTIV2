@@ -6,6 +6,7 @@ public class TextBubbles : MonoBehaviour
 {
     [Header("패널")]
     [ReadOnly] public List<GameObject> Animation_Panels;
+    public GameObject Gradient_Panel;
 
     private int panel_Index = 0;
 
@@ -13,6 +14,7 @@ public class TextBubbles : MonoBehaviour
 
     public GameObject BTN_next;
     public string sceneIndexName;
+    public int sceneIndex;
 
     public void Start()
     {
@@ -21,6 +23,9 @@ public class TextBubbles : MonoBehaviour
 
     public void Init()
     {
+        // 이번 스테이지의 대사집과 메세지 박스를 가져옴
+        DialogueManager.Instance.Make_MsgBox(true);
+
         for (int i = 0; i < this.transform.childCount; i++)
         {
             Animation_Panels.Add(this.transform.GetChild(i).gameObject);
@@ -28,9 +33,9 @@ public class TextBubbles : MonoBehaviour
 
         sceneIndexName = ((int)GameManager.Instance.m_State).ToString();
 
-        if (Check_Read(sceneIndexName))
+        if (Check_Read(sceneIndexName) || Animation_Panels.Count == 0)
         {
-            Debug.Log("이미 플레이한 스테이지");
+            Debug.Log("이미 플레이한 스테이지 또는 대사 없음");
             panel_Index = Animation_Panels.Count-1;
             Set_UI(false);
 
@@ -55,9 +60,11 @@ public class TextBubbles : MonoBehaviour
             {
                 Animation_Panels[i].SetActive(false);
             }
+            Gradient_Panel.SetActive(false);
         }
         else
         {
+            Gradient_Panel.SetActive(true);
             for (int i = 0; i < Animation_Panels.Count; i++)
             {
                 if (i == 0)
