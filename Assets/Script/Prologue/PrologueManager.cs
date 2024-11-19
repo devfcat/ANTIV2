@@ -58,7 +58,7 @@ public class PrologueManager : MonoBehaviour
 
         if (isNext)
         {
-            if (panel_Index == Animation_Panels.Count-1)
+            if (panel_Index >= Animation_Panels.Count-2)
             {
                 GameManager.Instance.SetState(eState.Stage01);
             }
