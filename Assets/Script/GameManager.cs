@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     public bool isWorking;
     public int saved_stage;
 
+    public float clearTime;
+
     [Header("설정 창")]
     public GameObject Panel_StartSetting;
     public GameObject Panel_Setting;

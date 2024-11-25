@@ -37,6 +37,8 @@ public enum SFX
     GameClear,
     Block00,
     Error,
+    Meow1,
+    Meow2,
 }
 
 public class SoundManager : MonoBehaviour
@@ -196,7 +198,7 @@ public class SoundManager : MonoBehaviour
         if (bgmPlayer.volume == 0 && bgmPlayer.isPlaying) // 볼륨 0일 때 재생 정지
         {
             Debug.Log("Muted");
-            BgmControl(BgmStatus.Stop);
+            // BgmControl(BgmStatus.Stop);
         }
         else if (bgmPlayer.volume > 0 && !bgmPlayer.isPlaying) // 볼륨이 0이 아니게 됐을 때 재생
         {

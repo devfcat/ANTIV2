@@ -12,6 +12,10 @@
                 {
                     "speaker" : "P",
                     "content" : "회로를 작동시키자.\n보이지 않는 힘이 주변을 가로막고 있으니 조심해야 해."
+                },
+                {
+                    "speaker" : "P",
+                    "content" : "일단 저 이상하고 네모난 물체를 밀어서 치워야겠어."
                 }
             ]
             
@@ -21,15 +25,11 @@
             "dialogue" : 
             [
                 {
-                    "speaker" : "",
-                    "content" : ""
-                },
-                {
-                    "speaker" : "",
-                    "content" : ""
+                    "speaker" : "P",
+                    "content" : "위험해! 조심해서 지나가야겠어."
                 }
             ]
             
         }
     ]
-}
+}  

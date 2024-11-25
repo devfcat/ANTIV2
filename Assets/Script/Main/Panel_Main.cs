@@ -77,6 +77,9 @@ public class Panel_Main : MonoBehaviour
 
     public void Game_New_Start()
     {
+        // 데이터 모두 삭제
+        PlayerPrefs.DeleteAll();
+
         SoundManager.Instance.PlaySFX(SFX.Setting);
         GameManager.Instance.SetState(eState.Prologue);
     }

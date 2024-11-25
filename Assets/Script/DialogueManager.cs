@@ -156,14 +156,18 @@ public class DialogueManager : MonoBehaviour
             {
                 activeName = 2;
             }
+            else
+            {
+                activeName = -1;
+            }
             
             for (int j = 0; j < 3; j++)
             {
                 if (j != activeName)
                 {
-                    instance.transform.GetChild(i).gameObject.SetActive(false);
+                    instance.transform.GetChild(j).gameObject.SetActive(false);
                 }
-                else instance.transform.GetChild(i).gameObject.SetActive(true);
+                else instance.transform.GetChild(j).gameObject.SetActive(true);
             }
         }
 
