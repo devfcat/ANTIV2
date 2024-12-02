@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public enum Character
 {
     P = 0,
@@ -29,6 +31,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] float speed; // 이동 속도
     [SerializeField] float r_speed; // 각 속도
     public bool isGameOver = false;
+    public TextMeshProUGUI value_stagePercent;
     [Tooltip("현재 조종 캐릭터")] public Character character;
     [Tooltip("애니메이션 모드")] public int animation_mod;
 
@@ -113,6 +116,33 @@ public class StageManager : MonoBehaviour
         animation_mod = 0;
         isWorking = false;
         isGameOver = false;
+    }
+
+    public void Set_Percent()
+    {
+        int stage_num = (int)GameManager.Instance.m_State - 3;
+        Debug.Log(stage_num + "번째 스테이지");
+
+        int percent = 0;
+
+        if (stage_num < 3)
+        {
+            percent = stage_num*10;
+        }
+        else
+        {
+            if (stage_num < 10)
+            {
+                percent = 26 + stage_num*6;
+            }
+            else // 10~13
+            {
+                percent = 80 + stage_num*5;
+            }
+
+        }
+
+        value_stagePercent.text = "회로 완성도: " + percent.ToString() + "%";
     }
 
     public void Click_Setting()

@@ -166,6 +166,7 @@ MonoBehaviour:
   speed: 2
   r_speed: 3
   isGameOver: 0
+  value_stagePercent: {fileID: 618251065}
   character: 0
   animation_mod: 0
   isWorking: 0

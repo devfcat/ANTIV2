@@ -78,7 +78,18 @@ public class Panel_Main : MonoBehaviour
     public void Game_New_Start()
     {
         // 데이터 모두 삭제
+        float BgmVolume = PlayerPrefs.GetFloat("BgmVolume");
+        float SfxVolume = PlayerPrefs.GetFloat("SfxVolume");
+        int saved = PlayerPrefs.GetInt("eResolution");
+        
         PlayerPrefs.DeleteAll();
+
+        SoundManager.Instance.BgmVolume = BgmVolume;
+        SoundManager.Instance.SfxVolume = SfxVolume;
+        SoundManager.Instance.SetVolumePref();
+        PlayerPrefs.SetInt("eResolution", (int)saved);
+        Resolution_Changer.Instance.Control_data();
+
 
         SoundManager.Instance.PlaySFX(SFX.Setting);
         GameManager.Instance.SetState(eState.Prologue);

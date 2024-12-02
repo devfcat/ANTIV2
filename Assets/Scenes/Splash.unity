@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4470351106026264679, guid: 36138d27b168866408fdbb1e31b08189, type: 3}
+  m_Sprite: {fileID: 5513199479464797130, guid: ad59a5e9f8e53f74caadc0a6bb11b3e4, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6204,6 +6204,7 @@ MonoBehaviour:
   g_State: 0
   isWorking: 0
   saved_stage: 0
+  clearTime: 0
   Panel_StartSetting: {fileID: 8949995454709499676}
   Panel_Setting: {fileID: 1464140064102943663}
   Panel_fade: {fileID: 4290714113102230773}
