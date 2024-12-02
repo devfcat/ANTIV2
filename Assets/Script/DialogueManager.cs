@@ -144,10 +144,10 @@ public class DialogueManager : MonoBehaviour
             GameObject instance = Instantiate(message_box, this.transform);
 
             // 대사 등 변경(UI 작업)
-            instance.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = loaded_dialogues[i].content;
+            instance.transform.GetChild(3).GetComponent<TypeEffect>().m_Message = loaded_dialogues[i].content;
             
             string name = loaded_dialogues[i].speaker;
-            int activeName = 0;
+            int activeName = -1;
             if (name == "V")
             {
                 activeName = 1;
@@ -156,9 +156,9 @@ public class DialogueManager : MonoBehaviour
             {
                 activeName = 2;
             }
-            else
+            else if (name == "S")
             {
-                activeName = -1;
+                activeName = 0;
             }
             
             for (int j = 0; j < 3; j++)

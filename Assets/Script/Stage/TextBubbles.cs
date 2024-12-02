@@ -23,8 +23,15 @@ public class TextBubbles : MonoBehaviour
 
     public void Init()
     {
-        // 이번 스테이지의 대사집과 메세지 박스를 가져옴
-        DialogueManager.Instance.Make_MsgBox(true);
+        if (GameManager.Instance.m_State == eState.Prologue)
+        {
+            PrologueManager.Instance.Make_MsgBox();
+        }
+        else
+        {
+            // 이번 스테이지의 대사집과 메세지 박스를 가져옴
+            DialogueManager.Instance.Make_MsgBox(true);
+        }
 
         for (int i = 0; i < this.transform.childCount; i++)
         {
@@ -51,8 +58,16 @@ public class TextBubbles : MonoBehaviour
 
     public void Set_UI(bool b)
     {
-        Start_Shell.SetActive(b);
-        BTN_next.SetActive(b);
+        try
+        {
+            Start_Shell.SetActive(b);
+            BTN_next.SetActive(b);
+        }
+        catch
+        {
+
+        }
+        
 
         if (!b)
         {
@@ -97,6 +112,11 @@ public class TextBubbles : MonoBehaviour
             {
                 Set_UI(false);
                 Save_Read(sceneIndexName);
+
+                if (GameManager.Instance.m_State == eState.Prologue)
+                {
+                    GameManager.Instance.SetState(eState.Stage01);
+                }
             }
             else 
             {

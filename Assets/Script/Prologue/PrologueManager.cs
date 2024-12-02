@@ -1,17 +1,19 @@
-using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
+using System.IO;
+using TMPro;
+using UnityEngine;
 
 public class PrologueManager : MonoBehaviour
 {
-    [Header("패널")]
-    public List<GameObject> Animation_Panels;
-
-    public int panel_Index = 0;
-
     public GameObject BTN_next;
-    public GameObject BTN_prev;
+    public GameObject message_box;
+
+    [Header("로드된 대사")] public List<Dialogue> loaded_dialogues;
+    public int length_dialogue;
+    public bool isLoading;
+
 
     private static PrologueManager _instance;
     public static PrologueManager Instance
@@ -36,52 +38,90 @@ public class PrologueManager : MonoBehaviour
     public void Init()
     {
         SoundManager.Instance.PlayBGM(BGM.Stage_Prologue);
-        panel_Index = 0;
-        Set_PageUI();
     }
 
-    public void Set_PageUI()
+     public void Load_Dialogue()
     {
-        if (panel_Index == 0)
-        {
-            BTN_prev.SetActive(false);
-        }
-        else
-        {
-            BTN_prev.SetActive(true);
-        }
+        StartCoroutine(Coroutine_LoadDialogue());
     }
 
-    public void Paging(bool isNext)
+    IEnumerator Coroutine_LoadDialogue()
     {
-        SoundManager.Instance.PlaySFX(SFX.click);
+        isLoading = true;
+        Clear_Dialogue();
 
-        if (isNext)
+        string filepath = "";
+        filepath = "Assets/Story/" + "KR/" + "Prologue/prologue.json";
+
+        string jsonContents = File.ReadAllText(filepath);
+
+        Story content = JsonUtility.FromJson<Story>(jsonContents);
+
+        // 어떤 스테이지의 대사집을 불러옴
+        length_dialogue = content.story[0].dialogue.Count;
+        for (int i = 0; i < length_dialogue; i++)
         {
-            if (panel_Index >= Animation_Panels.Count-2)
-            {
-                GameManager.Instance.SetState(eState.Stage01);
-            }
-            else panel_Index ++;
+            loaded_dialogues.Add(null);
         }
-        else
+        for (int i = 0; i < length_dialogue; i++)
         {
-            panel_Index --;
+            loaded_dialogues[i] =  content.story[0].dialogue[i] as Dialogue;
         }
 
-        Set_PageUI();
+        isLoading = false;
 
-        for (int i = 0; i < Animation_Panels.Count; i++)
+        yield return null;
+    }
+
+    public void Clear_Dialogue()
+    {
+        try
         {
-            if (i == panel_Index)
+            loaded_dialogues.Clear();
+            length_dialogue = 0;
+        }
+        catch {}
+    }
+
+    // 아래 메서드를 호출하여 스테이지 초기의 대사를 로드하고 메세지 박스를 띄움
+    public void Make_MsgBox()
+    {
+        isLoading = true;
+        Load_Dialogue();
+
+        for (int i = 0; i < length_dialogue; i++)
+        {
+            GameObject instance = Instantiate(message_box, this.transform);
+
+            // 대사 등 변경(UI 작업)
+            instance.transform.GetChild(3).GetComponent<TypeEffect>().m_Message = loaded_dialogues[i].content;
+            
+            string name = loaded_dialogues[i].speaker;
+            int activeName = -1;
+            if (name == "V")
             {
-                Animation_Panels[i].SetActive(true);
+                activeName = 1;
             }
-            else
+            else if (name == "P")
             {
-                Animation_Panels[i].SetActive(false);
+                activeName = 2;
+            }
+            else if (name == "S")
+            {
+                activeName = 0;
+            }
+            
+            for (int j = 0; j < 3; j++)
+            {
+                if (j != activeName)
+                {
+                    instance.transform.GetChild(j).gameObject.SetActive(false);
+                }
+                else instance.transform.GetChild(j).gameObject.SetActive(true);
             }
         }
+
+        isLoading = false;
     }
 
     public void Click_Setting()
