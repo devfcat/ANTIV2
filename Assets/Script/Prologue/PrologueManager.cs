@@ -6,9 +6,9 @@ using Unity.Collections;
 public class PrologueManager : MonoBehaviour
 {
     [Header("패널")]
-    public List<GameObject> Animation_Panels;
+    public RectTransform credits;
 
-    public int panel_Index = 0;
+    public GameObject anime_credit;
 
     public GameObject BTN_next;
     public GameObject BTN_prev;
@@ -36,26 +36,26 @@ public class PrologueManager : MonoBehaviour
     public void Init()
     {
         SoundManager.Instance.PlayBGM(BGM.Stage_Prologue);
-        panel_Index = 0;
-        Set_PageUI();
+        
+        //panel_Index = 0;
     }
 
-    public void Set_PageUI()
-    {
-        if (panel_Index == 0)
-        {
-            BTN_prev.SetActive(false);
-        }
-        else
-        {
-            BTN_prev.SetActive(true);
-        }
-    }
-
-    public void Paging(bool isNext)
+    public void Paging()
     {
         SoundManager.Instance.PlaySFX(SFX.click);
 
+        float pos_y = credits.anchoredPosition.y;
+        if (pos_y != 0)
+        {
+            anime_credit.GetComponent<Animator>().enabled = false;
+            credits.anchoredPosition = Vector2.zero;
+        }
+        else
+        {
+            GameManager.Instance.SetState(eState.Stage01);
+        }
+
+        /*
         if (isNext)
         {
             if (panel_Index >= Animation_Panels.Count-2)
@@ -82,6 +82,7 @@ public class PrologueManager : MonoBehaviour
                 Animation_Panels[i].SetActive(false);
             }
         }
+        */
     }
 
     public void Click_Setting()

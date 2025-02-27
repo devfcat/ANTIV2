@@ -2,6 +2,16 @@
     "story" :
     [
         {
+            "stage" :0 ,
+            "dialogue" : 
+            [
+                {
+                    "speaker" : "",
+                    "content" : ""
+                }
+            ]
+        },
+        {
             "stage" : 1,
             "dialogue" : 
             [

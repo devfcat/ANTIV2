@@ -135,7 +135,7 @@ public class DialogueManager : MonoBehaviour
     {
         isLoading = true;
 
-        m_stage = (int)GameManager.Instance.m_State - 3;
+        m_stage = (int)GameManager.Instance.m_State - 2;
         isStoryMode = b;
         Load_Dialogue();
 
